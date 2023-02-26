@@ -18,7 +18,8 @@ Resources:
       Runtime: python3.9
       Environment:
         Variables:
-          weatherApiKey: fw2gv2435342g34ty45hg45
+          weatherApiKey: f234fg34g453gb45634f34534f345ds4
+          geocodeApiKey: d23fv45y645hbtyj678ibdfghb456456
       Architectures:
         - x86_64
       Events:

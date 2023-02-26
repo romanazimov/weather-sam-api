@@ -1,16 +1,19 @@
 import json
+# from db.connector import connector
 
 def put_handler(event):
-    item_id = event['pathParameters']['id']
-    if not item_id.isnumeric():
+    lookup_id = event['pathParameters']['id']
+    if not lookup_id.isnumeric():
         return response("Invalid item ID")
         
     request_body = json.loads(event['body'])
-    if 'description' in request_body:
-        description = request_body['description']
-        return response(f"Description: {description} and ID: {item_id}")
+    if 'new_description' in request_body:
+        # new_description = request_body['new_description']
+        # query = f"UPDATE lookups SET description={new_description} WHERE id={lookup_id}"
+        # result = connector(query)
+        return response(f"The description has been updated for id:{lookup_id}")
     else:
-        return response("Key 'description' not found in request body")
+        return response("Key 'new_description' not found in request body")
             
 
 def response(message):
@@ -18,5 +21,6 @@ def response(message):
         "statusCode": 200,
         "body": json.dumps({
             "message": message,
+            # "message": result
         })
     }

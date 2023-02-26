@@ -1,9 +1,12 @@
 import json
+# from db.connector import connector
 
 def delete_handler(event):
-    item_id = event['pathParameters']['id']
-    if item_id.isnumeric():
-        return response(item_id + " DELETE REQUEST")
+    lookup_id = event['pathParameters']['id']
+    if lookup_id.isnumeric():
+        # query = f"DELETE FROM lookups WHERE id={lookup_id}"
+        # result = connector(query)
+        return response(lookup_id + " has been deleted.")
     else:                
         return response("Invalid item ID")
                 
@@ -13,5 +16,6 @@ def response(message):
         "statusCode": 200,
         "body": json.dumps({
             "message": message,
+            # "message": results
         })
     }
