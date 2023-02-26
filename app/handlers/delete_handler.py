@@ -16,6 +16,6 @@ def response(message):
         "statusCode": 200,
         "body": json.dumps({
             "message": message,
-            # "message": results
+            # "message": result
         })
     }
