@@ -8,17 +8,42 @@ Globals:
     MemorySize: 128
 
 Resources:
-  HelloWorldFunction:
+  WeatherAPIFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      FunctionName: WeatherSamAPI
+      Description: SAM API utilizing the OpenWeatherMap API. 
       CodeUri: app/
       Handler: app.lambda_handler
       Runtime: python3.9
+      Environment:
+        Variables:
+          weatherApiKey: fw2gv2435342g34ty45hg45
       Architectures:
         - x86_64
       Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+        ListEvent:
+          Type: Api
           Properties:
-            Path: /hello
-            Method: get
+            Path: /weather
+            Method: GET
+        PostEvent:
+          Type: Api
+          Properties:
+            Path: /weather
+            Method: POST
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /weather/{id}
+            Method: GET
+        PutEvent:
+          Type: Api
+          Properties:
+            Path: /weather/{id}
+            Method: PUT
+        DeleteEvent:
+          Type: Api
+          Properties:
+            Path: /weather/{id}
+            Method: DELETE
