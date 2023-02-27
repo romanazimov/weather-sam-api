@@ -15,6 +15,7 @@ def post_handler(event):
         #         f"VALUES ({data['latitude']}, {data['longtitude']}, {data['temp']}, {data['feels_like'], {data['temp_min']}," +
         #         f"{data['temp_max']}, {data['pressure']}, {data['humidity]']}, {data['note']}})"
         # result = connector(query)
+        
         return response(f"Address: {address}, Note: {description}")
     else:
         return response("Key 'address' and/or 'description' not found in request body")

@@ -11,6 +11,7 @@ def put_handler(event):
         # new_description = request_body['new_description']
         # query = f"UPDATE lookups SET description={new_description} WHERE id={lookup_id}"
         # result = connector(query)
+        
         return response(f"The description has been updated for id:{lookup_id}")
     else:
         return response("Key 'new_description' not found in request body")

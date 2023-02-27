@@ -7,7 +7,12 @@ def get_geocode_coords(address):
     latitude, longitude = None, None
     base_url = "https://maps.googleapis.com/maps/api/geocode/json"
     endpoint = f"{base_url}?address={address}&key={API_KEY}"
-    results = requests.get(endpoint)
+    
+    try:
+        results = requests.get(endpoint)
+    except requests.exceptions.RequestException as e:
+        return ("OpenWeatherMap API request failed:", e)
+    
     latitude = results['geometry']['location']['lat']
     longitude = results['geometry']['location']['lng']
     return latitude, longitude
