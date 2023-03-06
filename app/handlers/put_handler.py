@@ -5,6 +5,9 @@ def put_handler(event):
     lookup_id = event['pathParameters']['id']
     if not lookup_id.isnumeric():
         return response("Invalid item ID")
+    
+    if 'body' not in event or not event['body']:
+        return response("Request body is empty. It needs a 'new_description' key.")
         
     request_body = json.loads(event['body'])
     if 'new_description' in request_body:

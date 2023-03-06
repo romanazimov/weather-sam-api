@@ -4,6 +4,9 @@ import json
 # from db.connector import connector
 
 def post_handler(event):
+    if 'body' not in event or not event['body']:
+        return response("Request body is empty. It needs 'address' and 'description' keys.")
+
     request_body = json.loads(event['body'])
     if 'address' and 'description' in request_body:
         address = request_body['address']
@@ -16,7 +19,7 @@ def post_handler(event):
         #         f"{data['temp_max']}, {data['pressure']}, {data['humidity]']}, {data['note']}})"
         # result = connector(query)
         
-        return response(f"Address: {address}, Note: {description}")
+        return response(f"Address: {address}, Description: {description}")
     else:
         return response("Key 'address' and/or 'description' not found in request body")
 
